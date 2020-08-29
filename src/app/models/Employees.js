@@ -20,7 +20,7 @@ class Employees extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.Client, {
+        this.belongsTo(models.Event, {
             foreignKey: 'events_id',
             as: 'event',
         });

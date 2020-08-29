@@ -12,6 +12,7 @@ import UpgradeUserController from './app/controllers/UpgradeUserController';
 import RecoveryAccountController from './app/controllers/RecoveryAccountController';
 import CommemorativeController from './app/controllers/CommemorativeController';
 import EventController from './app/controllers/EventController';
+import EmployeesController from './app/controllers/EmployeesController';
 
 import authMiddleware from './app/middlewares/auth';
 import userMiddleware from './app/middlewares/user';
@@ -59,8 +60,9 @@ routes.get('/commemoratives/:id', userMiddleware, CommemorativeController.show);
 routes.post('/events', userMiddleware, EventController.store);
 routes.get('/events', userMiddleware, EventController.index);
 routes.get('/events/:id', userMiddleware, EventController.show);
-routes.put('/events', userMiddleware, EventController.update);
+routes.put('/events/:id', userMiddleware, EventController.update);
 routes.delete('/events/:id', userMiddleware, EventController.delete);
+routes.get('/employees/:id', userMiddleware, EmployeesController.show);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

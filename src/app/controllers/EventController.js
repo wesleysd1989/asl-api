@@ -146,7 +146,7 @@ class EventController {
         if (event.status === 'FINISHED' || event.status === 'ACTIVE') {
             return res.status(400).json({
                 error:
-                    'It is not possible to change information about an ongoing or completed raffle.',
+                    'It is not possible to change information about an ongoing or completed event.',
             });
         }
 
@@ -175,7 +175,7 @@ class EventController {
         if (event.status === 'FINISHED' || event.status === 'ACTIVE') {
             return res.status(400).json({
                 error:
-                    'It is not possible to delete raffle ongoing or completed.',
+                    'It is not possible to delete event ongoing or completed.',
             });
         }
 

@@ -7,19 +7,18 @@ class CreateEvent {
 
     async handle({ data }) {
         const event = data;
-
-        for (let i = 1; i <= event.employees.length; i += 1) {
-            const insertEmployees = async employee => {
-                await Employees.create(employee);
-            };
-            const employee = {
+        const insertEmployees = async employee => {
+            await Employees.create(employee);
+        };
+        event.employees.map(employee => {
+            const employeeData = {
                 events_id: event.id,
-                full_name: event.employees[i].full_name,
-                email: event.employees[i].email,
-                date_to_send: event.employees[i].date,
+                full_name: employee.full_name,
+                email: employee.email,
+                date_to_send: employee.date,
             };
-            insertEmployees(employee);
-        }
+            insertEmployees(employeeData);
+        });
     }
 }
 

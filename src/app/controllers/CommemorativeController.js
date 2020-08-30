@@ -17,7 +17,7 @@ class CommemorativeController {
                 ],
             },
         });
-        const commemorative = await Commemorative.findAll({
+        const commemoratives = await Commemorative.findAll({
             where: {
                 [Op.and]: [
                     where(fn('lower', col('name')), {
@@ -41,7 +41,7 @@ class CommemorativeController {
         return res.status(200).json({
             qtdPages: Math.ceil(qtdPages / qtdPage),
             total: qtdPages,
-            commemorative,
+            commemoratives,
         });
     }
 

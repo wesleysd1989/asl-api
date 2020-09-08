@@ -46,6 +46,27 @@ class EmployeesController {
             employees,
         });
     }
+
+    async delete(req, res) {
+        const { id } = req.params;
+
+        if (!id) {
+            return res.status(400).json({ error: 'Id is required' });
+        }
+
+        const commemorative = await Employees.findOne({
+            where: { id },
+        });
+
+        const updatedCommemorative = {
+            deleted: true,
+        };
+        await commemorative.update(updatedCommemorative);
+
+        return res
+            .status(200)
+            .json({ message: 'Employee deleted successfully.' });
+    }
 }
 
 export default new EmployeesController();

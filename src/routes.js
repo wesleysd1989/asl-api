@@ -63,6 +63,7 @@ routes.get('/events/:id', userMiddleware, EventController.show);
 routes.put('/events/:id', userMiddleware, EventController.update);
 routes.delete('/events/:id', userMiddleware, EventController.delete);
 routes.get('/employees/:id', userMiddleware, EmployeesController.show);
+routes.delete('/employees/:id', userMiddleware, EmployeesController.delete);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

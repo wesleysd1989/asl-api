@@ -22,6 +22,12 @@ module.exports = {
                 allowNull: false,
                 references: { model: 'images', key: 'id' },
             },
+            type: {
+                type: Sequelize.ENUM,
+                values: ['BIRTHDAY', 'SEND'],
+                defaultValue: 'SEND',
+                allowNull: false,
+            },
             status: {
                 type: Sequelize.ENUM,
                 values: ['ACTIVE', 'PENDING', 'FINISHED', 'BLOCKED', 'DELETED'],

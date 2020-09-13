@@ -14,6 +14,7 @@ class Event extends Model {
                     'BLOCKED',
                     'DELETED',
                 ]),
+                type: Sequelize.ENUM(['BIRTHDAY', 'SEND']),
             },
             {
                 sequelize,

@@ -34,7 +34,7 @@ class EventController {
                     }),
                 ],
             },
-            attributes: ['id', 'name', 'status'],
+            attributes: ['id', 'name', 'status', 'type'],
             limit: qtdPage,
             offset: (page - 1) * qtdPage,
             include: [
@@ -101,6 +101,7 @@ class EventController {
     async store(req, res) {
         const schema = Yup.object().shape({
             name: Yup.string().required(),
+            type: Yup.string().required(),
             commemorative_id: Yup.number().required(),
             image_id: Yup.number().required(),
             employees: Yup.array().required(),
@@ -112,6 +113,7 @@ class EventController {
 
         const eventRequest = {
             name: req.body.name,
+            type: req.body.type,
             commemorative_id: req.body.commemorative_id,
             image_id: req.body.image_id,
         };
@@ -126,6 +128,7 @@ class EventController {
         const { id } = req.params;
         const schema = Yup.object().shape({
             name: Yup.string(),
+            type: Yup.string(),
             commemorative_id: Yup.number(),
             image_id: Yup.number(),
             status: Yup.string(),
@@ -143,7 +146,7 @@ class EventController {
             where: { id },
         });
 
-        if (event.status === 'FINISHED' || event.status === 'ACTIVE') {
+        if (event.status === 'FINISHED') {
             return res.status(400).json({
                 error:
                     'It is not possible to change information about an ongoing or completed event.',
@@ -152,6 +155,7 @@ class EventController {
 
         const updatedEvent = {
             name: req.body.name || event.name,
+            type: req.body.type || event.type,
             commemorative_id:
                 req.body.commemorative_id || event.commemorative_id,
             image_id: req.body.image_id || event.image_id,
@@ -172,7 +176,7 @@ class EventController {
             where: { id },
         });
 
-        if (event.status === 'FINISHED' || event.status === 'ACTIVE') {
+        if (event.status === 'FINISHED') {
             return res.status(400).json({
                 error:
                     'It is not possible to delete event ongoing or completed.',

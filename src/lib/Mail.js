@@ -7,12 +7,14 @@ import mailConfig from '../config/mail';
 
 class Mail {
     constructor() {
-        const { host, port, secure, auth } = mailConfig;
+        const { host, port, secure, auth, requireTLS, tls } = mailConfig;
         this.transporter = nodemailer.createTransport({
             host,
             port,
             secure,
             auth: auth.user ? auth : null,
+            requireTLS,
+            tls,
         });
 
         this.configureTemplates();
